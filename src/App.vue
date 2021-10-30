@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <video id="camera" ref="camera" autoplay muted hidden />
+    <video id="camera" ref="camera" autoplay muted />
     <canvas id="canvas" ref="canvas" width="500" height="300" />
     <hr>
     {{ barcodes }}
@@ -51,9 +51,13 @@ export default {
     }
   },
   mounted(){
+    const supported = 'mediaDevices' in navigator;
+    if (!supported) {
+      console.log("Unfortunately we can't get access to your camera");
+      return;
+    }
     const c = document.getElementById('canvas');
     const v = document.getElementById('camera');
-    this.dataUrl = c.toDataURL();
     this.video = v;
     this.canvas = c;
     this.openCam();
