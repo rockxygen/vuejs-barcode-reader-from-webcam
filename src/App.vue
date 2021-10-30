@@ -29,7 +29,9 @@ export default {
         }
       }).then(stream => {
         this.video.srcObject = stream;
-        this.video.play();
+        this.video.onloadedmetadata = () => {
+          this.video.play();
+        }
 
         const barcode = new window.BarcodeDetector({ formats: ['qr_code', 'ean_13', 'ean_8'] });
 
@@ -60,6 +62,10 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #000;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
