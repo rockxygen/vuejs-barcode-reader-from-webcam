@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <video id="camera" ref="camera" autoplay muted />
+    <video id="camera" ref="camera" autoplay muted hidden />
     <canvas id="canvas" ref="canvas" width="500" height="300" />
     <hr>
     {{ barcodes }}
